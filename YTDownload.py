@@ -1,5 +1,5 @@
 from youtube_search import YoutubeSearch
-from pytube import YouTube
+from pytube import YouTube,Playlist
 from tkinter import Tk, filedialog
 import os
 def SearchYoutube():
@@ -34,10 +34,9 @@ def pathChooser():
     path = filedialog.askdirectory()
     return path
 def menu():
-    username=os.getlogin()
     os.system("cls")
     print("YoutubeDownload \n")
-    op=int(input("1-Introduzir Link\n2-Procurar Video\n"))
+    op=int(input("1-Introduzir Link\n2-Procurar Video\n3-Playlist\n"))
 
     if(op==1):
         link = input("Introduza Link:\n")
@@ -55,6 +54,16 @@ def menu():
             downladMus(yt,pathChooser())
         else:
             downladVid(yt,pathChooser())
+    elif(op==3):
+        link = input("Introduza Link da Playlist:\n")
+        p=Playlist(link)
+        v=int(input("1-Audio\n2-Video\n"))
+        if(v==1):
+          for i in p.video_urls:
+              x=YouTube(i)
+             # downladMus(x,pathChooser)
+        else:
+            downladVid(p,pathChooser())
     else:
         print("Introduza Opcao Valida\n")
 
