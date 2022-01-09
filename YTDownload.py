@@ -35,7 +35,7 @@ def pathChooser():
     return path
 def menu():
     os.system("cls")
-    print("YoutubeDownload \n")
+    print("Youtube Download \n")
     op=int(input("1-Introduzir Link\n2-Procurar Video\n3-Playlist\n"))
 
     if(op==1):
@@ -58,12 +58,12 @@ def menu():
         link = input("Introduza Link da Playlist:\n")
         p=Playlist(link)
         v=int(input("1-Audio\n2-Video\n"))
-        if(v==1):
-          for i in p.video_urls:
-              x=YouTube(i)
-              downladMus(x,pathChooser)
-        else:
-            downladVid(p,pathChooser())
+        path=pathChooser() 
+        for i in p.videos:
+            if(v==1):
+                i.streams.get_audio_only().download(output_path=path)
+            else:
+                i.streams.filter(file_extension="mp4").get_highest_resolution().download(output_path=path)     
     else:
         print("Introduza Opcao Valida\n")
 
