@@ -61,7 +61,7 @@ def menu():
         if(v==1):
           for i in p.video_urls:
               x=YouTube(i)
-             # downladMus(x,pathChooser)
+              downladMus(x,pathChooser)
         else:
             downladVid(p,pathChooser())
     else:
